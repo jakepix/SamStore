@@ -1,0 +1,269 @@
+/* --- Geral --- */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f3f8ff; /* fundo branco-azulado */
+  color: #222;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+
+/* --- Cabeçalho --- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #000000; /* azul Samsung */
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+header h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 2rem;
+}
+header nav a {
+  margin-left: 20px;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.3s;
+}
+header nav a:hover,
+header nav a.active {
+  color: #aee0ff;
+  transform: scale(1.1);
+}
+
+/* --- Hero --- */
+
+.hero {
+  text-align: center;
+  padding: 70px 20px; /* era 120px — reduzi pra 70px */
+  color: #fff;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+              url('img/isi.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 1.2rem;
+}
+.hero-btn {
+  display: inline-block;
+  padding: 15px 35px;
+  margin-top: 20px;
+  background: #fff;
+  color: #004aad;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Remove a animação da barra lateral */
+.hero-btn::before {
+  content: none; /* desativa a barra azul */
+}
+
+.hero-btn:hover {
+  transform: translateY(-5px); /* sobe 5px */
+  background-color: #cce5ff; /* leve mudança de cor no hover */
+  color: #004aad; /* mantém texto azul */
+}
+
+.hero-btn span {
+  position: relative;
+  z-index: 1;
+}
+.offer {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #cce5ff;
+}
+
+
+/* --- Produtos --- */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.product-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,74,173,0.15);
+}
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  max-height: 180px;
+  margin-bottom: 15px;
+}
+.product-card h3 {
+  margin: 10px 0 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.stars {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #ffb400;
+}
+.details {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+.price-buy {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price {
+  color: #004aad;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* --- Botão Comprar com Animação --- */
+.price-buy button {
+  background: #004aad;
+  color: white;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-weight: 700; /* mais grosso */
+  font-family: 'Poppins', sans-serif; /* fonte moderna */
+  letter-spacing: 0.05em; /* espaçamento leve entre letras */
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.price-buy button:hover {
+  transform: translateY(-5px);
+  background-color: #005ecb;
+}
+
+.price-buy button:hover::after {
+  width: 100%;
+}
+.price-buy button:hover {
+  transform: translateY(-5px); /* animação para cima */
+  /* removi o scale pra não ficar estranho */
+}
+.price-buy button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Tag do produto --- */
+.tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #007bff;
+  color: white;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 15px;
+  text-transform: uppercase;
+}
+.product-card {
+  position: relative;
+}
+
+/* --- Contato --- */
+.contact {
+  padding: 50px;
+  text-align: center;
+  background: #e8f1ff;
+}
+.contact h2 {
+  margin-bottom: 20px;
+  color: #004aad;
+}
+.contact p {
+  margin: 5px 0;
+  color: #333;
+}
+
+/* --- Rodapé --- */
+footer {
+  background: #000000;
+  color: #fff;
+  padding: 25px 20px;
+  text-align: center;
+  font-size: 14px;
+}
+.footer-links a {
+  margin: 0 12px;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.footer-links a:hover {
+  color: #aee0ff;
+}
+.socials a {
+  margin: 0 10px;
+  font-size: 20px;
+  color: #fff;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.socials a:hover {
+  color: #aee0ff;
+  transform: scale(1.2);
+}
+footer p {
+  margin-top: 15px;
+  color: #d9e9ff;
+  font-size: 13px;
+  user-select: none;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero h2 {
+    font-size: 2rem;
+  }
+  .products {
+    padding: 30px 20px;
+  }
+}
