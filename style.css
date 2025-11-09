@@ -49,7 +49,7 @@ header nav a.active {
   padding: 70px 20px; /* era 120px — reduzi pra 70px */
   color: #fff;
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-              url('img/isi.jpg') no-repeat center center;
+              url('isi.jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -267,3 +267,4 @@ footer p {
     padding: 30px 20px;
   }
 }
+
