@@ -212,3 +212,14 @@ function changeQty(productId, amount) {
 displayProducts();
 updateCartCount();
 displayCart();
+
+// Faz cada card abrir a página de detalhes
+document.querySelectorAll('.product-card').forEach(card => {
+  const nome = card.querySelector('h3').innerText;
+  const produto = productsData.find(p => p.name === nome);
+  if (produto) {
+    card.addEventListener('click', () => {
+      window.location.href = `produto.html?id=${produto.id}`;
+    });
+  }
+});
