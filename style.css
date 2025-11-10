@@ -49,7 +49,7 @@ header nav a.active {
   padding: 70px 20px; /* era 120px — reduzi pra 70px */
   color: #fff;
   background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-              url('isi.jpg') no-repeat center center;
+  url('isi.jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -266,5 +266,53 @@ footer p {
   .products {
     padding: 30px 20px;
   }
+}
+
+.produto-detalhes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.detalhe-card {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 800px;
+  gap: 20px;
+}
+
+.detalhe-card img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.detalhe-card .info {
+  flex: 1;
+  font-size: 1rem;
+}
+
+.detalhe-card .preco {
+  font-size: 1.3rem;
+  color: #004aad;
+  margin: 10px 0;
+}
+
+.detalhe-card button {
+  background: #004aad;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.detalhe-card button:hover {
+  background: #005ecb;
 }
 
