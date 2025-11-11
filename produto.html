@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SamStore - Produto</title>
+  <style>
+
+body, p, a, span, button {
+  font-weight: 700;
+}
+
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #e8f0ff, #ffffff);
+      color: #222;
+    }
+
+    /* Header */
+    header {
+      background: #000000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    header a {
+      background: white;
+      color: #000000;
+      padding: 10px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    header a:hover {
+      background: #dce7ff;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Imagem */
+    .product-image {
+      flex: 1 1 45%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f2f6ff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease;
+    }
+
+    .product-image:hover {
+      transform: scale(1.03);
+    }
+
+    .product-image img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 15px;
+    }
+
+    /* Info */
+    .product-info {
+      flex: 1 1 50%;
+    }
+
+    .product-info h2 {
+      font-size: 36px;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+
+    .product-info p {
+      font-size: 17px;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .specs {
+      background: #f7f9ff;
+      border-left: 5px solid #000000;
+      padding: 20px 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .specs h3 {
+      color: #0000;
+      margin-top: 0;
+    }
+
+    .specs ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #333;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: bold;
+      color: #008000;
+      margin-bottom: 20px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #000000, #000000);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 17px;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .buy-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #f1f5ff;
+      color: #333;
+      margin-top: 80px;
+      border-top: 1px solid #cfd9ff;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SamStore 📱</h1>
+    <a href="index.html">⬅ Voltar</a>
+  </header>
+
+  <div class="container">
+    <div class="product-image">
+      <img id="product-img" src="a10.jpg" alt="Produto">
+    </div>
+
+    <div class="product-info">
+      <h2 id="product-name">Samsung Galaxy A10</h2>
+      <p id="product-desc">O Samsung Galaxy A10 traz tela infinita de 6.2", desempenho confiável e design elegante. Ideal para quem quer qualidade e economia num só aparelho.</p>
+      
+      <div class="specs" id="product-specs">
+        <h3>📋 Especificações</h3>
+        <ul>
+          <li>Taxa de Atualização: 60Hz</li>
+          <li>Tela: 6.2" HD+</li>
+          <li>Processador: Octa-Core 1.6GHz</li>
+          <li>RAM: 2GB</li>
+          <li>Armazenamento: 32GB</li>
+          <li>Câmera: 13MP / 5MP</li>
+          <li>Bateria: 3400mAh</li>
+        </ul>
+      </div>
+
+      <div class="price" id="product-price">R$ 799,00</div>
+      <a href="#" class="buy-btn">🛒 Comprar Agora</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 SamStore - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // Função pra identificar o produto pela URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    // Exemplo: Se tiver outros produtos no futuro
+    const produtos = {
+      samsungA10: {
+        nome: "Samsung Galaxy A10",
+        preco: "MT 8,999",
+        img: "a10.jpg",
+        desc: "O Samsung Galaxy A10 traz tela infinita de 6.2\", desempenho confiável e design elegante. Ideal para quem quer qualidade e economia num só aparelho.",
+        specs: [
+          "Taxa de Atualização: 60Hz"
+          "Tela: 6.2\" HD+",
+          "Processador: Octa-Core 1.6GHz",
+          "RAM: 2GB",
+          "Armazenamento: 32GB",
+          "Câmera: 13MP / 5MP",
+          "Bateria: 3400mAh"
+        ]
+      },
+      samsungS23: {
+        nome: "Samsung Galaxy S23 Ultra",
+        preco: "R$ 5.999,00",
+        img: "img/s23.jpg",
+        desc: "O topo de linha da Samsung: desempenho absurdo, câmeras profissionais e tela incrível de 120Hz. O smartphone dos sonhos.",
+        specs: [
+          "Tela: 6.8\" QHD+ AMOLED 120Hz",
+          "Processador: Snapdragon 8 Gen 2",
+          "RAM: 12GB",
+          "Armazenamento: 256GB",
+          "Câmeras: 200MP / 12MP / 10MP",
+          "Bateria: 5000mAh"
+        ]
+      }
+    };
+
+    if (produtos[id]) {
+      document.getElementById('product-name').textContent = produtos[id].nome;
+      document.getElementById('product-desc').textContent = produtos[id].desc;
+      document.getElementById('product-price').textContent = produtos[id].preco;
+      document.getElementById('product-img').src = produtos[id].img;
+      
+      // Atualiza lista de specs
+      const ul = document.querySelector('#product-specs ul');
+      ul.innerHTML = "";
+      produtos[id].specs.forEach(s => {
+        const li = document.createElement('li');
+        li.textContent = s;
+        ul.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
