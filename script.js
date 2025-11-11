@@ -1,147 +1,36 @@
- const productsData = [
-  {
-    id: 'samsungA10',
-    name: 'Samsung A10',
-    price: 8999,
-    img: 'A10.jpg',
-    stars: '⭐⭐⭐⭐',
-    rating: 4.0,
-    details: 'Cores: Preto, Azul | Capacidade: 32GB, 64GB',
-    tag: 'Mais vendido'
-  },
-  {
-    id: 'samsungA11',
-    name: 'Samsung A11',
-    price: 9499,
-    img: 'A11.jpg',
-    stars: '⭐⭐⭐⭐',
-    rating: 4.1,
-    details: 'Cores: Preto, Branco | Capacidade: 32GB, 64GB',
-    tag: 'Novo'
-  },
-  {
-    id: 'samsungA12',
-    name: 'Samsung A12',
-    price: 10299,
-    img: 'samsungA12.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Azul, Branco | Capacidade: 64GB, 128GB',
-    tag: ''
-  },
-  {
-    id: 'samsungA13',
-    name: 'Samsung A13',
-    price: 11199,
-    img: 'samsungA13.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Branco | Capacidade: 64GB, 128GB, 256GB',
-    tag: 'Oferta'
-  },
-  {
-    id: 'samsungA14',
-    name: 'Samsung A14',
-    price: 11999,
-    img: 'samsungA14.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Verde | Capacidade: 64GB, 128GB',
-    tag: ''
-  },
-  {
-    id: 'samsungA15',
-    name: 'Samsung A15',
-    price: 12799,
-    img: 'samsungA15.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Branco, Vermelho | Capacidade: 128GB, 256GB',
-    tag: ''
-  },
-  {
-    id: 'samsungA16',
-    name: 'Samsung A16',
-    price: 13499,
-    img: 'samsungA16.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Branco | Capacidade: 64GB, 128GB',
-    tag: 'Novo'
-  },
-  {
-    id: 'samsungS20',
-    name: 'Samsung S20',
-    price: 28999,
-    img: 'samsungS20.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Azul, Cinza | Capacidade: 128GB, 256GB',
-    tag: 'Premium'
-  },
-  {
-    id: 'samsungS21',
-    name: 'Samsung S21',
-    price: 34999,
-    img: 'samsungS21.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Branco, Prata | Capacidade: 128GB, 256GB, 512GB',
-    tag: ''
-  },
-  {
-    id: 'samsungS22',
-    name: 'Samsung S22',
-    price: 39999,
-    img: 'samsungS22.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Verde, Roxo | Capacidade: 128GB, 256GB, 512GB',
-    tag: 'Oferta'
-  },
-  {
-    id: 'samsungS23',
-    name: 'Samsung S23',
-    price: 44999,
-    img: 'samsungS23.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Branco | Capacidade: 128GB, 256GB, 512GB',
-    tag: ''
-  },
-  {
-    id: 'samsungS24',
-    name: 'Samsung S24',
-    price: 49999,
-    img: 'samsungS24.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Azul | Capacidade: 256GB, 512GB',
-    tag: ''
-  },
-  {
-    id: 'samsungS25',
-    name: 'Samsung S25',
-    price: 54999,
-    img: 'samsungS25.jpg',
-    stars: '',
-    rating: 0,
-    details: 'Cores: Preto, Branco | Capacidade: 256GB, 512GB, 1TB',
-    tag: 'Novo'
-  }
-];
+// 🛒 Carrinho (inicia vazio ou do localStorage)
+let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
+// 🧩 Função pra mostrar os produtos na página principal
+function displayProducts() {
+  const container = document.getElementById('produtos');
+  container.innerHTML = ''; // limpa antes de criar
 
-  // Depois que os cards estão criados, adiciona eventos nos botões
-  const buyButtons = document.querySelectorAll('.buy-btn');
-  buyButtons.forEach(button => {
+  productsData.forEach(produto => {
+    container.innerHTML += `
+      <div class="product-card">
+        ${produto.tag ? `<div class="tag">${produto.tag}</div>` : ''}
+        <img src="${produto.img}" alt="${produto.name}">
+        <h3>${produto.name}</h3>
+        <p class="details">${produto.details}</p>
+        <div class="price-buy">
+          <span class="price">MT ${produto.price.toLocaleString()}</span>
+          <button class="buy-btn" data-id="${produto.id}">Comprar</button>
+          <button onclick="verMais('${produto.id}')">Ver mais</button>
+        </div>
+      </div>
+    `;
+  });
+
+  // 🧠 Depois que criar os cards, adiciona os eventos nos botões "Comprar"
+  document.querySelectorAll('.buy-btn').forEach(button => {
     button.addEventListener('click', () => {
       const id = button.getAttribute('data-id');
       addToCart(id);
     });
   });
 
-  // Configura a animação dos cards após renderizar
+  // ✨ Animação nos cards (aparecer com efeito)
   const cards = document.querySelectorAll('.product-card');
   const observer = new IntersectionObserver(
     entries => {
@@ -155,30 +44,69 @@
   );
   cards.forEach(card => observer.observe(card));
 
+  // 🔗 Clique no card abre a página do modelo (menos nos botões)
+  cards.forEach(card => {
+    card.addEventListener('click', e => {
+      if (!e.target.classList.contains('buy-btn') && e.target.tagName !== 'BUTTON') {
+        const nome = card.querySelector('h3').innerText;
+        const produto = productsData.find(p => p.name === nome);
+        if (produto) {
+          window.location.href = `${produto.id}.html`;
+        }
+      }
+    });
+  });
+}
+
+// 🔍 Função para abrir página de detalhes
+function verMais(id) {
+  window.location.href = `${id}.html`;
+}
+
+// 🧨 (Opcional) página genérica de produto
+function verProduto(id) {
+  window.location.href = `produto.html?id=${id}`;
+}
+
+// 🛍️ Adiciona produto ao carrinho
 function addToCart(productId) {
   if (cart[productId]) {
     cart[productId].qty++;
   } else {
-    const product = productsData.find(p => p.id === productId);
-    cart[productId] = { ...product, qty: 1 };
+    const produto = productsData.find(p => p.id === productId);
+    cart[productId] = { ...produto, qty: 1 };
   }
   localStorage.setItem('cart', JSON.stringify(cart));
   updateCartCount();
   alert('Produto adicionado ao carrinho! 🛒');
 }
 
+// 🔢 Atualiza o contador do carrinho
+function updateCartCount() {
+  const countEl = document.getElementById('cart-count');
+  if (!countEl) return;
+  const totalQty = Object.values(cart).reduce((acc, item) => acc + item.qty, 0);
+  countEl.textContent = totalQty;
+}
+
+// 🧾 Mostra itens no carrinho (se tiver área pra isso)
 function displayCart() {
   const cartItems = document.getElementById('cart-items');
+  if (!cartItems) return;
+
   cartItems.innerHTML = '';
+
   if (Object.keys(cart).length === 0) {
     cartItems.innerHTML = '<p>Seu carrinho está vazio.</p>';
     document.getElementById('cart-total').innerText = 'MZN 0';
     return;
   }
+
   let total = 0;
   for (const id in cart) {
     const item = cart[id];
     total += item.price * item.qty;
+
     const div = document.createElement('div');
     div.className = 'cart-item';
     div.innerHTML = `
@@ -194,9 +122,11 @@ function displayCart() {
     `;
     cartItems.appendChild(div);
   }
+
   document.getElementById('cart-total').innerText = `MZN ${total.toLocaleString()}`;
 }
 
+// 🔄 Muda quantidade do item no carrinho
 function changeQty(productId, amount) {
   if (!cart[productId]) return;
   cart[productId].qty += amount;
@@ -208,18 +138,8 @@ function changeQty(productId, amount) {
   displayCart();
 }
 
-// Inicializa
+// 🚀 Inicializa tudo
 displayProducts();
 updateCartCount();
 displayCart();
 
-// Faz cada card abrir a página de detalhes
-document.querySelectorAll('.product-card').forEach(card => {
-  const nome = card.querySelector('h3').innerText;
-  const produto = productsData.find(p => p.name === nome);
-  if (produto) {
-    card.addEventListener('click', () => {
-      window.location.href = `produto.html?id=${produto.id}`;
-    });
-  }
-});
