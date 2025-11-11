@@ -1,4 +1,9 @@
 /* --- Geral --- */
+
+body, p, a, span, button {
+  font-weight: 700;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
@@ -106,20 +111,20 @@ header nav a.active {
 }
 
 .product-card {
+  border-radius: 8px; /* menos arredondado */
+  border: 2px solid #ddd;
   background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 220px;
+  transition: 0.3s;
 }
+
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0,74,173,0.15);
+  transform: scale(1.03);
+  border-color: #0078ff;
 }
+
 .product-card img {
   width: 100%;
   height: auto;
@@ -316,3 +321,76 @@ footer p {
   background: #005ecb;
 }
 
+.product-page {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-container {
+    display: flex;
+    gap: 50px;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.images {
+    flex: 1;
+    min-width: 300px;
+}
+
+.images #main-img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+.images .thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+.images .thumbnails img {
+    width: 80px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.images .thumbnails img:hover {
+    border-color: #0077ff;
+    transform: scale(1.05);
+}
+
+.details {
+    flex: 1;
+    min-width: 300px;
+}
+
+.details h2 {
+    font-size: 2rem;
+    color: #0077ff;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff4d4f;
+    margin-bottom: 15px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-weight: 400;
+    color: #888;
+    margin-left: 10px;
+}
+
+.description {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 20px;
+}
