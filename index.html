@@ -1,20 +1,28 @@
-<!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SamStore</title>
-  <!-- Fontes e Ícones -->
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Adiciona aqui dentro do head -->
+  <script src="https://kit.fontawesome.com/a2e0e9e5b1.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
+
+  <script src="script.js"></script>
+  <script>
+    const container = document.getElementById('produtos');
+  </script>
+</body>
+</html>
+
   <!-- Cabeçalho -->
   <header>
-    <h1>SamStore</h1>
+    <h1>🛍️ SamStore</h1>
 <nav>
-  <a href="#home" class="active">Início</a>
+  <a href="#">Sobre</a>
   <a href="#produtos">Produtos</a>
   <a href="#contato">Contato</a>
   <a href="faq.html">FAQ</a> <!-- adiciona aqui -->
@@ -127,7 +135,7 @@
       <div class="tag">Premium</div>
       <img src="s20.jpg" alt="Samsung S20" />
       <h3>Samsung S20</h3>
-      <div class="stars">⭐⭐⭐⭐⭐ (4.8)</div>
+      <div class="stars">⭐⭐⭐⭐⭐ (4.7)</div>
       <p class="details">Cores: Preto, Azul, Cinza | Capacidade: 128GB, 256GB</p>
       <div class="price-buy">
         <span class="price">MT 28,999</span>
@@ -139,7 +147,7 @@
     <div class="product-card">
       <img src="s21.jpg" alt="Samsung S21" />
       <h3>Samsung S21</h3>
-      <div class="stars">⭐⭐⭐⭐⭐ (4.9)</div>
+      <div class="stars">⭐⭐⭐⭐ (4.6)</div>
       <p class="details">Cores: Preto, Branco, Prata | Capacidade: 128GB, 256GB, 512GB</p>
       <div class="price-buy">
         <span class="price">MT 34,999</span>
@@ -152,7 +160,7 @@
       <div class="tag">Oferta</div>
       <img src="s22.jpg" alt="Samsung S22" />
       <h3>Samsung S22</h3>
-      <div class="stars">⭐⭐⭐⭐⭐ (5.0)</div>
+      <div class="stars">⭐⭐⭐⭐ (4.7)</div>
       <p class="details">Cores: Preto, Verde, Roxo | Capacidade: 128GB, 256GB, 512GB</p>
       <div class="price-buy">
         <span class="price">MT 39,999</span>
@@ -176,7 +184,7 @@
     <div class="product-card">
       <img src="s24.jpg" alt="Samsung S24+" />
       <h3>Samsung S24</h3>
-      <div class="stars">⭐⭐⭐⭐ (4.5)</div>
+      <div class="stars">⭐⭐⭐⭐ (4.8)</div>
       <p class="details">Cores: Preto, Azul | Capacidade: 256GB, 512GB</p>
       <div class="price-buy">
         <span class="price">MT 49,999</span>
@@ -202,26 +210,35 @@
   <!-- Contato -->
   <section id="contato" class="contact">
     <h2>Contato</h2>
-    <p>Email: vendas@iphonestore.com</p>
+    <p>Email: vendas@SamStore.com</p>
     <p>Telefone: +258 84 000 0000</p>
   </section>
 
   <!-- Rodapé -->
- <footer>
+<!-- Rodapé -->
+<footer>
   <div class="footer-links">
     <a href="#">Sobre</a>
-    <a href="politica.html">Política</a> <!-- aqui tirou o # -->
+    <a href="politica.html">Política</a>
     <a href="faq.html">FAQ</a>
   </div>
 
-    <div class="socials">
-      <a href="https://www.facebook.com/profile.php?id=61563001950209" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://instagram.com/Darwin.Soul" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://wa.me/258840000000" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-    </div>
-    <p>© 2025 iPhone Supreme | Maputo, Moçambique</p>
-  </footer>
+  <div class="socials">
+    <a href="https://www.facebook.com/profile.php?id=61563001950209" target="_blank">
+      <i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://instagram.com/Darwin.Soul" target="_blank">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/258840000000" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <p>© SamStore | Maputo, Moçambique</p>
+</footer>
 
   <script src="script.js"></script>
 </body>
 </html>
+
