@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - SamStore</title>
+    <link rel="stylesheet" href="carrinho.css">
+    <script src="https://kit.fontawesome.com/a2e0e9e5b1.js" crossorigin="anonymous"></script>
+</head>
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f3f8ff;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+.cart-header {
+    background: #000000;
+    color: #fff;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h1 {
+    font-size: 2rem;
+    margin: 0 auto; /* Centraliza o título */
+}
+
+.back-link {
+    color: #aee0ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+.cart-main {
+    display: flex;
+    gap: 30px;
+    padding: 40px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Itens do Carrinho --- */
+.cart-items {
+    flex-grow: 1;
+    min-width: 60%;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 15px;
+    border-radius: 4px;
+}
+
+.item-info {
+    flex-grow: 1;
+}
+
+.item-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: #004aad;
+}
+
+.quantity-controls button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0 5px;
+}
+
+.item-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #e63946;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+    color: #555;
+    background: #fff;
+    border-radius: 8px;
+}
+
+/* --- Resumo do Carrinho --- */
+.cart-summary {
+    width: 300px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #eee;
+}
+
+.summary-line.total {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000000;
+    border-bottom: none;
+    margin-top: 15px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: #004aad;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+    background: #005ecb;
+}
+
+/* --- Responsivo --- */
+@media (max-width: 900px) {
+    .cart-main {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .cart-summary {
+        width: 100%;
+    }
+}
+
+</style>
+
+<body>
+    <header class="cart-header">
+        <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Voltar à Loja
+        </a>
+        <h1>Seu Carrinho</h1>
+    </header>
+
+    <main class="cart-main">
+        <section id="cart-items-container" class="cart-items"></section>
+        
+        <section class="cart-summary">
+            <h2>Resumo do Pedido</h2>
+            <div class="summary-line">
+                <span>Subtotal:</span>
+                <span id="subtotal">MT 0.00</span>
+            </div>
+            <div class="summary-line">
+                <span>Frete:</span>
+                <span id="shipping">Grátis</span>
+            </div>
+            <div class="summary-line total">
+                <span>Total:</span>
+                <span id="total-price">MT 0.00</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </section>
+    </main>
+
+    <script>
+        // Funções do Carrinho.html
+        
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cartItems')) || [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('cartItems', JSON.stringify(cart));
+            renderCart(); // Re-renderiza após salvar
+        }
+
+        function updateQuantity(id, change) {
+            let cart = getCart();
+            const item = cart.find(i => i.id === id);
+            
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    // Remove o item se a quantidade for zero ou menos
+                    cart = cart.filter(i => i.id !== id);
+                }
+                saveCart(cart);
+            }
+        }
+            
+        function renderCart() {
+            const cart = getCart();
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('subtotal');
+            const totalEl = document.getElementById('total-price');
+            let subtotal = 0;
+            
+            container.innerHTML = ''; // Limpa o conteúdo anterior
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="empty-cart">Seu carrinho está vazio. Adicione alguns produtos!</p>';
+                subtotalEl.innerText = 'MT 0.00';
+                totalEl.innerText = 'MT 0.00';
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item');
+                
+                itemDiv.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="item-info">
+                        <h3>${item.name}</h3>
+                        <p>Preço unitário: MT ${item.price.toLocaleString('pt-PT')}</p>
+                        <div class="quantity-controls">
+                            <button onclick="updateQuantity('${item.id}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateQuantity('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="item-price">MT ${itemTotal.toLocaleString('pt-PT')}</div>
+                `;
+                container.appendChild(itemDiv);
+            });
+            
+            // Atualiza os totais
+            subtotalEl.innerText = `MT ${subtotal.toLocaleString('pt-PT')}`;
+            totalEl.innerText = `MT ${subtotal.toLocaleString('pt-PT')}`; // Frete Grátis
+        }
+
+        // Renderiza o carrinho ao carregar a página
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>
